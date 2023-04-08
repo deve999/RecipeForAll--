@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../static/css/style.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script defer src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>
+  <title>Search 2</title>
+  <!--Bootstrap CSS for basic layout when testing -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <!--search button section, here Noah can put the CSS styling instead of the class that is
+    currently there at line 23, and also move the button anywhere else on the page-->
+    <form action="/search" method="POST" >
+      <div class="search-box">
+        <label>
+          <input class="search-txt" type="text" name="search" placeholder="Search Food Names">
+        </label>
+        <button class="search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </form>
+    <div class="container my-5">
+              <table class="table">
+                {% if search_text %}
+                  <h2>Search Results for '{{ search_text }}'</h2>
+                  {% endif %}
+
+                    <thead>
+                        <tr>
+                            <th>Recipe Name</th>
+                            <th>Recipe Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for search in search_results %}
+                        <tr>
+                            <td>{{ search['foodName'] }}</td>
+                            <td>{{ search['image'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+
+      </table>
+    </div>
+  </div>
+</body>
+</html>
